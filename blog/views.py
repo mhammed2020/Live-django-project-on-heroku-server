@@ -27,5 +27,15 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model =  Post
 
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
