@@ -2,7 +2,9 @@ from django.urls import path
 from .views import (
     PostListView,
     PostDetailView,
-    PostCreateView,PostUpdateView,PostDeleteView,UserPostListView
+    PostCreateView,PostUpdateView,PostDeleteView,UserPostListView,
+
+    ProjectListView,ProjectDetailView,
    )
 from . import views
 
@@ -18,5 +20,12 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
 
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+
+    #---------------------------------------project model 
+    path('project/', ProjectListView.as_view(), name='project-home'),
+    path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
+    path('project/',views.allProjects,name='allPosts'),
+
+
     path('about/', views.about, name='blog-about'),
 ]

@@ -22,7 +22,7 @@ class PostListView(ListView):
     template_name = 'blog/home.html'  
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 5
+    paginate_by = 8
 
 
 
@@ -40,7 +40,7 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model =  Post
 
-from .forms import NewComment
+from .forms import NewComment, Project
 
 def post_detail(request,post_id) :
     
@@ -110,3 +110,27 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+
+
+class ProjectListView(ListView):
+    model = Project
+    template_name = 'blog/allposts.html'  
+    context_object_name = 'allposts'
+    ordering = ['-created']
+    paginate_by = 8
+
+class ProjectDetailView(DetailView):
+    model = Project
+
+
+def allProjects(request):
+
+    allPosts=Project.objects.all()
+
+
+    context= {
+        'allposts':allPosts,
+    }
+       
+    return  render(request,'blog/allposts.html',context)
