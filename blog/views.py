@@ -8,8 +8,9 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-from .models import Post
+from .models import Post, Project
 
+from .forms import NewComment
 
 def home(request):
     context = {
@@ -40,7 +41,6 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model =  Post
 
-from .forms import NewComment, Project
 
 def post_detail(request,post_id) :
     
