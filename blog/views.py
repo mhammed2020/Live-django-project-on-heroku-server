@@ -108,8 +108,8 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
 
 
 
-def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+# def about(request):
+#     return render(request, 'blog/about.html', {'title': 'About'})
 
 
 
@@ -134,3 +134,9 @@ def allProjects(request):
     }
        
     return  render(request,'blog/allposts.html',context)
+
+    
+def about(request):
+    return render(request, 'blog/about.html', {'title': 'About'})
+def training(request):
+    return render(request, 'blog/training.html', {'title': 'formation'})
